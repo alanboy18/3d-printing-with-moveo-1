@@ -3160,11 +3160,13 @@ bool set_probe_deployed_ones(const bool deploy) {
 
     if (deploy_stow_condition && unknown_condition)
     {
-      if(current_position[X_AXIS] == 0 && current_position[Y_AXIS] == 0)
-      {
-        current_position[X_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 0]) - (X_BED_SIZE/2);
-        current_position[Y_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 1]) - (Y_BED_SIZE/2);
-      }
+      // if(current_position[X_AXIS] == 0 && current_position[Y_AXIS] == 0)
+      // {
+      current_Probe_position=67;
+      current_position[X_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 0]) - (X_BED_SIZE/2);
+      current_position[Y_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 1]) - (Y_BED_SIZE/2);
+      current_position[Z_AXIS] = Z_CLEARANCE_DEPLOY_PROBE;
+      // }
       do_probe_raise_many(MAX(Z_CLEARANCE_BETWEEN_PROBES, Z_CLEARANCE_DEPLOY_PROBE));
     }
       
@@ -7567,7 +7569,8 @@ void home_all_axes() { gcode_G28(true); }
 
               char str_G29[80];
               if(In_Rectangle(pgm_read_float_near(&Probe_position[(int)(yy*10+(int)xx)*3+0]) - (X_BED_SIZE/2),pgm_read_float_near(&Probe_position[(int)(yy*10+(int)xx)*3+1])- (Y_BED_SIZE/2)))
-                dtostrf(eqnBVector[ind] , 5, 5, str_G29);
+                if(yy==8||yy==6)dtostrf(eqnBVector[yy*10+(9-xx)] , 5, 5, str_G29);
+                else            dtostrf(eqnBVector[ind] , 5, 5, str_G29);
               else
                 dtostrf(0 , 5, 5, str_G29);
               strcat(str_G29, " ");                           

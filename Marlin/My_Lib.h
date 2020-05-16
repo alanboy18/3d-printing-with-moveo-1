@@ -663,7 +663,7 @@ void Go_to_Joint_Zero_Marlin()
 
   current_position[X_AXIS] = 0.00;
   current_position[Y_AXIS] = 0.00;
-  current_position[Z_AXIS] = 779.94;
+  current_position[Z_AXIS] = 0;
   float max_feedrate_joint_init[Joint_All] = DEFAULT_MAX_FEEDRATE_JOINT;
   // planner.max_feedrate_mm_s_joint[Joint1_AXIS] = 700;
   planner.buffer_line_kinematic(current_position, current_position_Joint, MMM_TO_MMS(manual_feedrate_mm_m_joint1[0]), 0);

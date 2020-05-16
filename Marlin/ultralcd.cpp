@@ -1215,9 +1215,9 @@ void lcd_quick_feedback(const bool clear_buttons) {
     current_position_Joint[Joint4_AXIS]=0;
     current_position_Joint[Joint5_AXIS]=0;
     
-    current_position[X_AXIS]=18.83;
-    current_position[Y_AXIS]=70.83;
-    current_position[Z_AXIS]=779.94;
+    current_position[X_AXIS]=0;
+    current_position[Y_AXIS]=0;
+    current_position[Z_AXIS]=0;
     float max_feedrate_joint_init[Joint_All] = DEFAULT_MAX_FEEDRATE_JOINT;
     planner.max_feedrate_mm_s_joint[Joint1_AXIS] = 50;
     planner.buffer_line_kinematic(current_position, current_position_Joint, MMM_TO_MMS(manual_feedrate_mm_m_joint[0]), 0);
