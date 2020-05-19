@@ -782,7 +782,7 @@ XYZ_CONSTS_FROM_CONFIG(signed char, home_dir, HOME_DIR);
 
 Joint_CONSTS_FROM_CONFIG(float, base_min_pos_Joint,   MIN_POS); 
 Joint_CONSTS_FROM_CONFIG(float, base_max_pos_Joint,   MAX_POS); 
-Joint_CONSTS_FROM_CONFIG(float, base_home_pos_Joint,  HOME_POS);
+Joint_CONSTS_FROM_CONFIG(float, base_home_pos_Joint,  HOME_POS); Joint1_HOME_POS
 Joint_CONSTS_FROM_CONFIG(float, max_length_Joint,     MAX_LENGTH); 
 Joint_CONSTS_FROM_CONFIG(float, home_bump_mm_Joint,   HOME_BUMP_MM);
 Joint_CONSTS_FROM_CONFIG(signed char, home_dir_Joint, HOME_DIR); 
@@ -3160,13 +3160,13 @@ bool set_probe_deployed_ones(const bool deploy) {
 
     if (deploy_stow_condition && unknown_condition)
     {
-      // if(current_position[X_AXIS] == 0 && current_position[Y_AXIS] == 0)
-      // {
-      current_Probe_position=67;
-      current_position[X_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 0]) - (X_BED_SIZE/2);
-      current_position[Y_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 1]) - (Y_BED_SIZE/2);
-      current_position[Z_AXIS] = Z_CLEARANCE_DEPLOY_PROBE;
-      // }
+      if(current_position[X_AXIS] == 0 && current_position[Y_AXIS] == 0)
+      {
+        current_Probe_position=67;
+        current_position[X_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 0]) - (X_BED_SIZE/2);
+        current_position[Y_AXIS] = pgm_read_float_near(&Probe_position[current_Probe_position * 3 + 1]) - (Y_BED_SIZE/2);
+        current_position[Z_AXIS] = Z_CLEARANCE_DEPLOY_PROBE;
+      }
       do_probe_raise_many(MAX(Z_CLEARANCE_BETWEEN_PROBES, Z_CLEARANCE_DEPLOY_PROBE));
     }
       
